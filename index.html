@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>Tiny notes</title>
+
+        <script src="node_modules/vue/dist/vue.min.js"></script>
+        <link rel="stylesheet" href="app/styles.css">
+
+    </head>
+    <body>
+
+        <div class="app">
+            <div class="left">
+                <header>
+                    <a v-on:click="add">add</a>
+                    <a v-on:click="moveUp" v-bind:class="{inactive: !canUp()}">up</a>
+                    <a v-on:click="moveDown" v-bind:class="{inactive: !canDown()}">down</a>
+                </header>
+                <ul>
+                    <li v-for="(item, index) in items" 
+                        v-on:click="activeItem = item" 
+                        v-bind:title="item.date"
+                        v-bind:class="{active: activeItem === item}">
+                        {{item.text}}
+                        <a class="remove" v-on:click="remove($event, item, index)">
+                            <span>x</span>
+                        </a>
+                    </li>
+                </ul>
+                <div v-if="!items || items.length === 0" class="empty">
+                    you don't have any notes<br>click <a v-on:click="add">here</a> to add one
+                </div>
+            </div>
+            <div class="right">
+                <header><b>Tiny notes</b></header>
+                <div class="text">
+                    <textarea v-if="activeItem" v-model="activeItem.text" ref="text"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <script src="app/app.js"></script>
+        
+    </div>
+</html>
