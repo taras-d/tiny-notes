@@ -7,6 +7,6 @@ gulp.task('compile:less', function() {
         .pipe(gulp.dest('app'));
 });
 
-gulp.task('watch', function() {
+gulp.task('watch', ['compile:less'], function() {
     gulp.watch('app/styles.less', ['compile:less']);
 });
