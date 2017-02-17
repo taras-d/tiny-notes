@@ -10,6 +10,6 @@
     "gulp-less": "^3.3.0"
   },
   "dependencies": {
-    "vue": "^2.1.10"
+    "vue": "^1.0.28-csp"
   }
 }
