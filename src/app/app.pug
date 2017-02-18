@@ -1,0 +1,20 @@
+.tiny-notes
+    .left
+        header
+            a(v-on:click="add") add
+            a(v-on:click="moveUp" v-bind:class="{inactive: !canUp()}") up
+            a(v-on:click="moveDown" v-bind:class="{inactive: !canDown()}") down
+        ul
+            li(
+                v-for="(item, index) in items" 
+                v-on:click="activeItem = item" 
+                v-bind:title="item.date"
+                v-bind:class="{active: activeItem === item}"
+            ) {{item.text}}
+                a.remove(v-on:click="remove($event, item, index)") #[span x]
+        .empty(v-if="!items || items.length === 0")
+            | you don't have any notes #[br] click #[a(v-on:click="add") here] to add one
+    .right
+        header #[b Tiny notes]
+        .text
+            textarea(v-if="activeItem" v-model="activeItem.text" ref="text")
