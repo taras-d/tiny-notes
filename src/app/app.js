@@ -1,3 +1,6 @@
+
+const storageKey = 'tiny-notes';
+
 export default {
 
     name: 'app',
@@ -17,21 +20,19 @@ export default {
     methods: {
 
         readFromStorage: function() {
-
             try { 
-                this.items = JSON.parse(localStorage.getItem('tiny-notes')) || []; 
+                this.items = JSON.parse(localStorage.getItem(storageKey)) || []; 
             } catch (e) { }
-
             this.activeItem = this.items[0] || null;
         },
 
         saveToStorage: function() {
-            window.localStorage.setItem('tiny-notes', JSON.stringify(this.items));
+            localStorage.setItem(storageKey, JSON.stringify(this.items));
         },
 
         add() {
 
-            var date = new Date();
+            let date = new Date();
 
             this.items.push({
                 id: date.getTime(),
@@ -41,11 +42,11 @@ export default {
 
             this.activeItem = this.items[this.items.length - 1];
 
-            setTimeout(function() {
-                var text = this.$refs.text;
+            setTimeout(() => {
+                let text = this.$refs.text;
                 text.focus();
                 text.select();
-            }.bind(this));
+            });
         },
 
         remove(event, item, index) {
@@ -55,37 +56,38 @@ export default {
             if (this.activeItem === item) {
                 this.activeItem = null;
             }
+
             this.items.splice(index, 1);
         },
 
         canUp() {
-            var index = this.items.indexOf(this.activeItem),
+            let index = this.items.indexOf(this.activeItem),
                 length = this.items.length;
             return (index > 0 && length > 1);
         },
 
         moveUp() {
-            var index = this.items.indexOf(this.activeItem);
+            let index = this.items.indexOf(this.activeItem);
             if (index > 0) {
                 this.move(index, index - 1);
             }
         },
 
         canDown() {
-            var index = this.items.indexOf(this.activeItem),
+            let index = this.items.indexOf(this.activeItem),
                 length = this.items.length;
             return (index < length - 1 && length > 1);
         },
 
         moveDown() {
-            var index = this.items.indexOf(this.activeItem);
+            let index = this.items.indexOf(this.activeItem);
             if (index < this.items.length - 1) {
                 this.move(index, index + 1);
             }
         },
 
         move(from, to) {
-            var item = this.items[from];
+            let item = this.items[from];
             this.items.splice(from, 1);
             this.items.splice(to, 0, item);
         }

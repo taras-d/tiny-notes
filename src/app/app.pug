@@ -1,9 +1,9 @@
 .tiny-notes
     .left
         header
-            a(v-on:click="add") add
-            a(v-on:click="moveUp" v-bind:class="{inactive: !canUp()}") up
-            a(v-on:click="moveDown" v-bind:class="{inactive: !canDown()}") down
+            a(v-on:click="add" title="Add new note") add
+            a(v-on:click="moveUp" v-bind:class="{inactive: !canUp()}" title="Move up") up
+            a(v-on:click="moveDown" v-bind:class="{inactive: !canDown()}" title="Move down") down
         ul
             li(
                 v-for="(item, index) in items" 
