@@ -13,7 +13,7 @@
             ) {{item.text}}
                 a.remove(v-on:click="remove($event, item, index)") #[span x]
         .empty(v-if="!items || items.length === 0")
-            | you don't have any notes #[br] click #[a(v-on:click="add") here] to add one
+            | you don't have any notes #[br]click #[a(v-on:click="add") here] to add one
     .right
         header #[b Tiny notes]
         .text

@@ -7,14 +7,14 @@ export default {
 
     data() {
         return {
-            items: [],
+            items: null,
             activeItem: null
         }
     },
 
     created() {
         this.readFromStorage();
-        window.addEventListener('beforeunload', this.saveToStorage);
+        window.addEventListener(chrome? 'unload': 'beforeunload', this.saveToStorage);
     },
 
     methods: {
