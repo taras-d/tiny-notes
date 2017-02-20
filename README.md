@@ -1,5 +1,6 @@
 # tiny-notes
 
+[Extension](https://chrome.google.com/webstore/detail/tiny-notes/bhpicdlgfpjaidahkmfddkehnmlbljed) for Google Chrome
 
 #### Installiation notes
 ```javascript
